@@ -118,3 +118,73 @@ Admins can approve or delete customer reviews before they appear on the website.
 
 ## Project Structure
 
+activeworld-kenya/
+│
+├── admin/
+│ ├── login.php # Admin login page
+│ ├── dashboard.php # Main admin dashboard
+│ ├── logout.php # Logout handler
+│ ├── manage-reviews.php # Review management page
+│ └── email-log.php # Email log viewer
+│
+├── api/
+│ ├── config-sample.php # Database configuration template
+│ ├── submit-event.php # Event request submission handler
+│ ├── mpesa-config-sample.php # M-Pesa configuration template
+│ ├── mpesa-stk.php # M-Pesa STK Push request handler
+│ ├── mpesa-callback.php # M-Pesa callback handler
+│ ├── update-payment.php # Payment status update handler
+│ ├── get-events-api.php # API endpoint for retrieving events
+│ └── send-email.php # Email sending function
+│
+├── images/ # Static images for the website
+├── customer/ # Customer-facing pages (if applicable)
+├── email_backups/ # Saved email backups
+├── email_logs/ # Email transaction logs
+│
+├── index.html # Homepage
+├── about.html # About Us page
+├── services.html # Services page
+├── contact.html # Contact form with M-Pesa
+├── reviews.php # Customer reviews page
+├── gallery.php # Event gallery page
+├── style.css # Main stylesheet
+└── script.js # Main JavaScript
+
+
+---
+
+## Database Structure
+
+The system uses a MySQL database with the following main tables:
+
+**admin_users**
+Stores admin login credentials including username, hashed password, and email.
+
+**event_requests**
+The main table storing all customer event requests. Includes fields for customer details, event information, status, payment tracking, and timestamps.
+
+**mpesa_transactions**
+Stores all M-Pesa payment transactions including transaction ID, phone number, amount, receipt number, and status.
+
+**reviews**
+Stores customer reviews including name, email, rating, review text, and approval status.
+
+**event_images**
+Stores event gallery images with titles, categories, and image paths.
+
+**notifications**
+Logs all notifications sent to customers (email, SMS, push).
+
+**subscribers**
+Stores newsletter subscribers (optional feature).
+
+---
+
+## Installation Guide
+
+### Step 1: Download the Code
+
+Option A: Clone from GitHub
+```bash
+git clone https://github.com/aniquekariuki/activeworld-kenya.git
