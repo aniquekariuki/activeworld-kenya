@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Active World Kenya</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; background: #0A0A0A; color: white; }
+
+        .navbar { background: #111318; padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+        .logo span { color: #F26419; }
+        .nav-links a { color: white; text-decoration: none; margin-left: 25px; transition: color 0.3s; }
+        .nav-links a:hover { color: #F26419; }
+
+        .page-header { background: linear-gradient(135deg, #1a1a2e, #0A0A0A); text-align: center; padding: 60px 20px; }
+        .page-header h1 { font-size: 48px; margin-bottom: 15px; }
+        .page-header h1 span { color: #F26419; }
+
+        .contact-section { max-width: 1200px; margin: 0 auto; padding: 60px 20px; display: grid; grid-template-columns: 1fr 1.5fr; gap: 50px; }
+
+        .info-card { background: #111318; padding: 25px; border-radius: 15px; margin-bottom: 20px; display: flex; align-items: center; gap: 20px; }
+        .info-icon { font-size: 40px; }
+        .info-text h3 { color: #F26419; }
+        .info-text a { color: #F26419; }
+
+        .map-container { margin-top: 20px; border-radius: 15px; overflow: hidden; }
+
+        .form-container { background: #111318; padding: 40px; border-radius: 15px; }
+        .form-container h2 { margin-bottom: 10px; }
+        .form-container > p { color: #aaa; margin-bottom: 20px; }
+
+        .form-group { margin-bottom: 20px; }
+        label { display: block; margin-bottom: 8px; color: #aaa; }
+        label .required { color: #F26419; }
+        input, select, textarea {
+            width: 100%; padding: 12px;
+            background: #1a1a1a; border: 1px solid #333;
+            border-radius: 8px; color: white;
+            font-family: inherit; font-size: 15px;
+        }
+        input:focus, select:focus, textarea:focus { outline: none; border-color: #F26419; }
+        select option { background: #1a1a1a; }
+
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .phone-hint { font-size: 12px; color: #888; margin-top: 5px; display: block; }
+
+        /* ── FIX 1: Submit button — disabled state ── */
+        #submitBtn {
+            background: #F26419; color: white; padding: 14px;
+            border: none; border-radius: 8px; font-size: 16px;
+            font-weight: bold; cursor: pointer; width: 100%;
+            transition: all 0.3s; margin-top: 5px;
+        }
+        #submitBtn:hover:not(:disabled) { background: #e0550a; transform: translateY(-2px); }
+        #submitBtn:disabled { background: #666; cursor: not-allowed; transform: none; }
+
+        /* ── FIX 2: Message box — was never becoming visible ── */
+        /* Old code used display:none in CSS then set className which didn't override it */
+        /* New: use a .show class to make it visible */
+        .message-box {
+            margin-top: 16px; padding: 14px 16px;
+            border-radius: 8px; font-size: 15px;
+            line-height: 1.6; display: none;
+        }
+        .message-box.show   { display: block; }
+        .message-box.success { background: #27ae60; color: white; }
+        .message-box.error   { background: #e74c3c; color: white; }
+        .message-box.loading { background: #F26419; color: white; }
+
+        /* ── M-Pesa section ── */
+        .mpesa-section { margin-top: 30px; padding-top: 20px; border-top: 1px solid #333; }
+        .mpesa-section h3 { color: #F26419; margin-bottom: 10px; }
+        .mpesa-section > p { color: #aaa; font-size: 14px; margin-bottom: 15px; }
+        .mpesa-input-group { display: flex; gap: 10px; flex-wrap: wrap; }
+        .mpesa-input-group input { flex: 2; }
+        #mpesa_pay_btn {
+            flex: 1; background: #1DB954; color: white;
+            border: none; border-radius: 8px; padding: 12px 16px;
+            font-size: 15px; font-weight: bold; cursor: pointer;
+            transition: all 0.3s; white-space: nowrap; min-width: 120px;
+        }
+        #mpesa_pay_btn:hover:not(:disabled) { background: #17a347; transform: translateY(-2px); }
+        #mpesa_pay_btn:disabled { background: #555; cursor: not-allowed; }
+        #mpesa_message { margin-top: 12px; font-size: 14px; line-height: 1.6; min-height: 20px; }
+
+        .footer { background: #111318; text-align: center; padding: 40px; margin-top: 60px; }
+        .social-links { margin-top: 20px; }
+        .social-links a { color: #F26419; text-decoration: none; margin: 0 10px; }
+
+        @media (max-width: 768px) {
+            .contact-section { grid-template-columns: 1fr; }
+            .form-row { grid-template-columns: 1fr; }
+            .mpesa-input-group { flex-direction: column; }
+            .page-header h1 { font-size: 32px; }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="logo"><span>🌍 ACTIVE</span> WORLD</div>
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="contact.html">Contact</a>
+        <a href="reviews.php">Reviews</a>
+    </div>
+</nav>
+
+<div class="page-header">
+    <h1>Get in <span>Touch</span></h1>
+    <p>Let's create something unforgettable together</p>
+</div>
+
+<div class="contact-section">
+
+    <!-- LEFT: Contact info -->
+    <div>
+        <div class="info-card">
+            <div class="info-icon">📍</div>
+            <div class="info-text"><h3>Visit Us</h3><p>Westlands, Nairobi, Kenya</p></div>
+        </div>
+        <div class="info-card">
+            <div class="info-icon">📞</div>
+            <div class="info-text"><h3>Call Us</h3><p>+254 717 038 890</p></div>
+        </div>
+        <div class="info-card">
+            <div class="info-icon">✉️</div>
+            <div class="info-text"><h3>Email Us</h3><p><a href="mailto:info@activeworld.co.ke">info@activeworld.co.ke</a></p></div>
+        </div>
+        <div class="info-card">
+            <div class="info-icon">⏰</div>
+            <div class="info-text"><h3>Business Hours</h3><p>Mon–Fri: 8am–6pm | Sat: 9am–1pm</p></div>
+        </div>
+        <div class="map-container">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.819497607877!2d36.804734!3d-1.286389!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f10e3b7b7b7b7%3A0x7b7b7b7b7b7b7b7b!2sNairobi%2C%20Kenya!5e0!3m2!1sen!2ske!4v1700000000000!5m2!1sen!2ske"
+                width="100%" height="250" style="border:0;border-radius:15px;" allowfullscreen loading="lazy"></iframe>
+        </div>
+    </div>
+
+    <!-- RIGHT: Form -->
+    <div class="form-container">
+        <h2>Request a Quote</h2>
+        <p>Fill out the form and we'll respond within 24 hours</p>
+
+        <form id="eventForm" novalidate>
+            <div class="form-group">
+                <label>Full Name <span class="required">*</span></label>
+                <input type="text" id="name" placeholder="e.g. John Doe" required>
+                <small class="phone-hint">First and last name</small>
+            </div>
+            <div class="form-group">
+                <label>Phone Number <span class="required">*</span></label>
+                <input type="tel" id="phone" placeholder="254700000000" maxlength="12" required>
+                <small class="phone-hint">📱 12 digits starting with 254 e.g. 254712345678</small>
+            </div>
+            <div class="form-group">
+                <label>Email <span class="required">*</span></label>
+                <input type="email" id="email" placeholder="you@example.com" required>
+            </div>
+            <div class="form-group">
+                <label>Event Type <span class="required">*</span></label>
+                <select id="event_type" required>
+                    <option value="">-- Select event type --</option>
+                    <option>Concert / Live Show</option>
+                    <option>Corporate Conference</option>
+                    <option>Wedding / Ceremony</option>
+                    <option>Private Party</option>
+                    <option>Brand Activation</option>
+                    <option>Graduation</option>
+                    <option>Team Building</option>
+                    <option>Festival / Expo</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Event Date</label>
+                <input type="date" id="event_date">
+                <small class="phone-hint">📅 Future dates only</small>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Expected Guests</label>
+                    <select id="guests">
+                        <option value="">Select range</option>
+                        <option>Under 50</option>
+                        <option>50–150</option>
+                        <option>150–500</option>
+                        <option>500–1,000</option>
+                        <option>1,000–5,000</option>
+                        <option>Over 5,000</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Venue</label>
+                    <input type="text" id="venue" placeholder="e.g. KICC Nairobi">
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Message</label>
+                <textarea id="message" rows="4" placeholder="Describe your event, theme, special requirements..."></textarea>
+            </div>
+
+            <button type="submit" id="submitBtn">📩 Send Request</button>
+
+            <!-- FIX 2: message box now uses .show class to become visible -->
+            <div id="messageBox" class="message-box"></div>
+        </form>
+
+        <!-- M-PESA -->
+        <div class="mpesa-section">
+            <h3>💳 Pay with M-Pesa</h3>
+            <p>Pay your event deposit securely via M-Pesa STK Push</p>
+            <div class="mpesa-input-group">
+                <input type="tel" id="mpesa_phone" placeholder="254700000000" maxlength="12">
+                <input type="number" id="mpesa_amount" placeholder="Amount (KES)" min="1">
+                <button type="button" id="mpesa_pay_btn">💳 Pay Now</button>
+            </div>
+            <div id="mpesa_message"></div>
+        </div>
+    </div>
+</div>
+
+<footer class="footer">
+    <p>&copy; 2026 Active World Kenya. All rights reserved.</p>
+    <div class="social-links">
+        <a href="#">Facebook</a> | <a href="#">Instagram</a> | <a href="#">Twitter</a>
+    </div>
+    <p style="margin-top:10px;">
+        🔍 <a href="customer/status.php" style="color:#F5A623;">Check Event Status</a>
+    </p>
+</footer>
+
+<script>
+// =================================================================
+// FIX SUMMARY:
+//   1. showMsg() now adds class 'show' so message box becomes visible
+//   2. setTimeout to hide message is INSIDE success block only
+//      (was outside try/catch before — ran immediately, hiding message)
+//   3. response.text() read first, then JSON.parse() with try/catch
+//      so PHP warnings don't silently cause "Network error"
+//   4. M-Pesa same fix — reads raw text first before parsing JSON
+//   5. Both buttons properly disabled during requests
+// =================================================================
+
+// ── Helper: show message box ─────────────────────────────────────
+function showMsg(id, type, html) {
+    var box = document.getElementById(id);
+    box.className = 'message-box ' + type + ' show';
+    box.innerHTML = html;
+    box.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+function hideMsg(id) {
+    var box = document.getElementById(id);
+    box.className = 'message-box';
+    box.innerHTML = '';
+}
+
+// ── Phone auto-format ────────────────────────────────────────────
+document.getElementById('phone').addEventListener('input', function() {
+    this.value = this.value.replace(/[^0-9]/g, '').slice(0, 12);
+});
+document.getElementById('mpesa_phone').addEventListener('input', function() {
+    this.value = this.value.replace(/[^0-9]/g, '').slice(0, 12);
+});
+
+// =================================================================
+// EVENT REQUEST FORM
+// =================================================================
+document.getElementById('eventForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    hideMsg('messageBox');
+
+    var name       = document.getElementById('name').value.trim();
+    var phone      = document.getElementById('phone').value.trim();
+    var email      = document.getElementById('email').value.trim();
+    var event_type = document.getElementById('event_type').value;
+    var event_date = document.getElementById('event_date').value;
+    var guests     = document.getElementById('guests').value;
+    var venue      = document.getElementById('venue').value.trim();
+    var message    = document.getElementById('message').value.trim();
+    var submitBtn  = document.getElementById('submitBtn');
+
+    // ── Validations ──────────────────────────────────────────────
+    var nameParts = name.split(' ').filter(function(w){ return w.length > 0; });
+    if (nameParts.length < 2) {
+        showMsg('messageBox', 'error', '❌ Please enter your first AND last name. Example: John Doe');
+        return;
+    }
+
+    var phoneClean = phone.replace(/[^0-9]/g, '');
+    if (phoneClean.length !== 12 || phoneClean.substring(0, 3) !== '254') {
+        showMsg('messageBox', 'error', '❌ Phone must be 12 digits starting with 254. Example: 254712345678');
+        return;
+    }
+
+    if (!email || email.indexOf('@') === -1 || email.indexOf('.') === -1) {
+        showMsg('messageBox', 'error', '❌ Please enter a valid email address.');
+        return;
+    }
+
+    if (!event_type) {
+        showMsg('messageBox', 'error', '❌ Please select an event type.');
+        return;
+    }
+
+    if (event_date) {
+        var today = new Date(); today.setHours(0,0,0,0);
+        var picked = new Date(event_date);
+        if (picked < today) {
+            showMsg('messageBox', 'error', '❌ Event date cannot be in the past.');
+            return;
+        }
+    }
+
+    // ── Loading state ────────────────────────────────────────────
+    submitBtn.disabled    = true;
+    submitBtn.textContent = '⏳ Sending...';
+    showMsg('messageBox', 'loading', '⏳ Submitting your request, please wait...');
+
+    var formData = {
+        name: name, phone: phoneClean, email: email,
+        event_type: event_type, event_date: event_date,
+        guests: guests, venue: venue, message: message
+    };
+
+    // ── Fetch ────────────────────────────────────────────────────
+    try {
+        var response = await fetch('http://localhost/activeworld/api/submit-event.php', {
+            method:  'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body:    JSON.stringify(formData)
+        });
+
+        if (!response.ok) {
+            throw new Error('Server error: HTTP ' + response.status);
+        }
+
+        // FIX 3: Read as text first — PHP warnings break JSON.parse()
+        var text = await response.text();
+        var result;
+        try {
+            result = JSON.parse(text);
+        } catch(parseErr) {
+            console.error('Server raw response:', text);
+            showMsg('messageBox', 'error',
+                '❌ Server returned an unexpected response. Check PHP errors.<br>' +
+                '<small style="opacity:.8">Open browser console (F12) to see raw response.</small>'
+            );
+            submitBtn.disabled    = false;
+            submitBtn.textContent = '📩 Send Request';
+            return;
+        }
+
+        if (result.success) {
+            showMsg('messageBox', 'success',
+                '✅ ' + result.message +
+                '<br><br>📋 <strong>Your Reference Number: ' + result.reference + '</strong>' +
+                '<br><a href="customer/status.php?ref=' + result.reference +
+                '" style="color:#F5E56B;font-weight:bold;text-decoration:underline;">🔍 Track Your Event Status →</a>'
+            );
+            document.getElementById('eventForm').reset();
+            // FIX 4: setTimeout INSIDE success — only hides after success, after 15 seconds
+            setTimeout(function(){ hideMsg('messageBox'); }, 15000);
+        } else {
+            showMsg('messageBox', 'error', '❌ ' + (result.message || 'Something went wrong. Please try again.'));
+        }
+
+    } catch(err) {
+        console.error('Submit error:', err);
+        showMsg('messageBox', 'error',
+            '❌ Could not connect to server.<br>' +
+            '<small style="opacity:.8">Make sure XAMPP is running and the file exists at:<br>' +
+            '<code>htdocs/activeworld/api/submit-event.php</code></small>'
+        );
+    }
+
+    submitBtn.disabled    = false;
+    submitBtn.textContent = '📩 Send Request';
+});
+
+// =================================================================
+// M-PESA PAYMENT
+// =================================================================
+document.getElementById('mpesa_pay_btn').addEventListener('click', async function() {
+    var phone   = document.getElementById('mpesa_phone').value.trim();
+    var amount  = document.getElementById('mpesa_amount').value.trim();
+    var msgDiv  = document.getElementById('mpesa_message');
+    var payBtn  = document.getElementById('mpesa_pay_btn');
+
+    msgDiv.innerHTML = '';
+
+    // ── Validate ─────────────────────────────────────────────────
+    var phoneClean = phone.replace(/[^0-9]/g, '');
+    if (phoneClean.length !== 12 || phoneClean.substring(0, 3) !== '254') {
+        msgDiv.innerHTML = '<span style="color:#e74c3c;">❌ Enter a valid M-Pesa number starting with 254 (12 digits). Example: 254712345678</span>';
+        return;
+    }
+    if (!amount || parseInt(amount) < 1) {
+        msgDiv.innerHTML = '<span style="color:#e74c3c;">❌ Enter a valid amount (minimum KES 1).</span>';
+        return;
+    }
+
+    // ── Loading ───────────────────────────────────────────────────
+    payBtn.disabled    = true;
+    payBtn.textContent = '⏳ Processing...';
+    msgDiv.innerHTML   = '<span style="color:#F26419;">⏳ Sending STK push to +' + phoneClean + ', please wait...</span>';
+
+    try {
+        var response = await fetch('http://localhost/activeworld/api/mpesa-stk.php', {
+            method:  'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body:    JSON.stringify({ phone: phoneClean, amount: parseInt(amount), event_id: 0 })
+        });
+
+        if (!response.ok) {
+            throw new Error('HTTP ' + response.status);
+        }
+
+        // FIX 5: Read raw text first — PHP notices break JSON.parse()
+        // This is WHY you were getting "Service error" even when STK push worked
+        var text = await response.text();
+        var result;
+        try {
+            result = JSON.parse(text);
+        } catch(parseErr) {
+            console.error('M-Pesa raw response:', text);
+            // STK push may have still gone through even if JSON is broken
+            msgDiv.innerHTML =
+                '<span style="color:#f39c12;">⚠️ Check your phone — the STK push may have been sent.<br>' +
+                '<small>If you see the M-Pesa prompt, enter your PIN to complete payment.<br>' +
+                'Technical: Server returned invalid JSON — check mpesa-stk.php for PHP warnings.</small></span>';
+            payBtn.disabled    = false;
+            payBtn.textContent = '💳 Pay Now';
+            return;
+        }
+
+        if (result.success) {
+            msgDiv.innerHTML =
+                '<span style="color:#27ae60;">✅ ' + result.message + '</span>';
+            document.getElementById('mpesa_phone').value  = '';
+            document.getElementById('mpesa_amount').value = '';
+        } else {
+            msgDiv.innerHTML =
+                '<span style="color:#e74c3c;">❌ ' + (result.message || 'M-Pesa request failed. Please try again.') + '</span>';
+        }
+
+    } catch(err) {
+        console.error('M-Pesa fetch error:', err);
+        msgDiv.innerHTML =
+            '<span style="color:#e74c3c;">❌ Could not reach M-Pesa API.<br>' +
+            '<small>Make sure XAMPP is running and <code>api/mpesa-stk.php</code> exists.</small></span>';
+    }
+
+    payBtn.disabled    = false;
+    payBtn.textContent = '💳 Pay Now';
+});
+</script>
+
+</body>
+</html>

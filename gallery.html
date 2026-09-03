@@ -1,0 +1,56 @@
+<?php
+$conn = new mysqli('localhost', 'root', '', 'activeworld_db');
+$images = $conn->query("SELECT * FROM event_images ORDER BY created_at DESC");
+?>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Event Gallery - Active World</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial; background: #0A0A0A; color: white; }
+        .navbar { background: #111318; padding: 15px 30px; display: flex; justify-content: space-between; }
+        .logo span { color: #F26419; }
+        .nav-links a { color: white; text-decoration: none; margin-left: 20px; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 60px 20px; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .gallery-item { background: #111318; border-radius: 10px; overflow: hidden; }
+        .gallery-item img { width: 100%; height: 250px; object-fit: cover; }
+        .gallery-item h3 { padding: 15px; }
+        @media (max-width: 768px) { .gallery-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo"><span>🌍 ACTIVE</span> WORLD</div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="services.html">Services</a>
+            <a href="contact.html">Contact</a>
+            <a href="reviews.php">Reviews</a>
+            <a href="gallery.php">Gallery</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1 style="text-align:center; margin-bottom:40px;">Our Event <span style="color:#F26419;">Gallery</span></h1>
+        <div class="gallery-grid">
+            <!-- Sample images - You'll need to add real images here -->
+            <div class="gallery-item">
+                <img src="https://via.placeholder.com/400x250?text=Concert+Event" alt="Concert">
+                <h3>Concert at KICC</h3>
+            </div>
+            <div class="gallery-item">
+                <img src="https://via.placeholder.com/400x250?text=Corporate+Event" alt="Corporate">
+                <h3>Corporate Summit</h3>
+            </div>
+            <div class="gallery-item">
+                <img src="https://via.placeholder.com/400x250?text=Wedding" alt="Wedding">
+                <h3>Luxury Wedding</h3>
+            </div>
+        </div>
+        <p style="text-align:center; margin-top:40px;">More event photos coming soon!</p>
+    </div>
+</body>
+</html>

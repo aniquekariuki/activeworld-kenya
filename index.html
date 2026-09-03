@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Active World Kenya - Premium Events Company</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; background: #0A0A0A; color: white; }
+        
+        .navbar { background: #111318; padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+        .logo span { color: #F26419; }
+        .nav-links a { color: white; text-decoration: none; margin-left: 25px; transition: color 0.3s; }
+        .nav-links a:hover { color: #F26419; }
+        
+        .hero { background: linear-gradient(135deg, #1a1a2e, #0A0A0A); text-align: center; padding: 100px 20px; }
+        .hero h1 { font-size: 56px; margin-bottom: 20px; }
+        .hero h1 span { color: #F26419; }
+        .hero p { font-size: 18px; color: #ccc; margin-bottom: 30px; }
+        .btn { background: #F26419; color: white; padding: 12px 30px; text-decoration: none; border-radius: 8px; display: inline-block; font-weight: bold; transition: all 0.3s; }
+        .btn:hover { background: #e0550a; transform: translateY(-2px); }
+        
+        .container { max-width: 1200px; margin: 0 auto; padding: 80px 20px; }
+        .section-title { text-align: center; font-size: 36px; margin-bottom: 50px; }
+        .section-title span { color: #F26419; }
+        
+        .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; text-align: center; margin-bottom: 60px; }
+        .stat-card { background: #111318; padding: 40px; border-radius: 15px; }
+        .stat-number { font-size: 48px; font-weight: bold; color: #F26419; }
+        
+        .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .service-card { background: #111318; border-radius: 15px; overflow: hidden; transition: transform 0.3s; }
+        .service-card:hover { transform: translateY(-10px); }
+        .service-card img { width: 100%; height: 180px; object-fit: cover; }
+        .service-info { padding: 20px; }
+        .service-info h3 { margin-bottom: 10px; color: #F26419; }
+        .service-info p { color: #ccc; margin-bottom: 15px; }
+        .service-link { color: #F26419; text-decoration: none; font-weight: bold; }
+        
+        .cta { background: linear-gradient(135deg, #F26419, #e0550a); text-align: center; padding: 60px; border-radius: 20px; margin: 40px 0; }
+        .cta h2 { font-size: 36px; margin-bottom: 20px; }
+        .cta .btn { background: white; color: #F26419; }
+        
+        .footer { background: #111318; text-align: center; padding: 40px; margin-top: 60px; }
+        
+        @media (max-width: 768px) {
+            .stats-grid, .services-grid { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 36px; }
+            .nav-links a { margin-left: 15px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo"><span>🌍 ACTIVE</span> WORLD</div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="services.html">Services</a>
+            <a href="contact.html">Contact</a>
+            <a href="reviews.php">Reviews</a>
+        </div>
+    </nav>
+
+    <div class="hero">
+        <h1>WE CREATE <span>UNFORGETTABLE</span> EVENTS</h1>
+        <p>Concerts • Weddings • Corporate Events • Private Parties • Brand Activations</p>
+        <a href="contact.html" class="btn">Get Free Quote →</a>
+    </div>
+
+    <div class="container">
+        <h2 class="section-title">Why Choose <span>Active World?</span></h2>
+        <div class="stats-grid">
+            <div class="stat-card"><div class="stat-number">200+</div><p>Events Delivered</p></div>
+            <div class="stat-card"><div class="stat-number">50K+</div><p>Happy Guests</p></div>
+            <div class="stat-card"><div class="stat-number">10+</div><p>Years Experience</p></div>
+            <div class="stat-card"><div class="stat-number">100%</div><p>Satisfaction Rate</p></div>
+        </div>
+
+        <h2 class="section-title">Our <span>Services</span></h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <img src="images/concert.webp" alt="Concert" onerror="this.src='https://placehold.co/600x400/1a1a1a/F26419?text=Concert'">
+                <div class="service-info">
+                    <h3>🎤 Concerts & Shows</h3>
+                    <p>Full production, staging, lighting, and sound</p>
+                    <a href="services.html" class="service-link">Learn More →</a>
+                </div>
+            </div>
+            <div class="service-card">
+                <img src="images/corporate.webp" alt="Corporate" onerror="this.src='https://placehold.co/600x400/1a1a1a/F26419?text=Corporate'">
+                <div class="service-info">
+                    <h3>🏢 Corporate Events</h3>
+                    <p>Conferences, AGMs, product launches, team building</p>
+                    <a href="services.html" class="service-link">Learn More →</a>
+                </div>
+            </div>
+            <div class="service-card">
+                <img src="images/wedding.webp" alt="Wedding" onerror="this.src='https://placehold.co/600x400/1a1a1a/F26419?text=Wedding'">
+                <div class="service-info">
+                    <h3>💍 Weddings</h3>
+                    <p>Traditional ceremonies to modern receptions</p>
+                    <a href="services.html" class="service-link">Learn More →</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="cta">
+            <h2>Ready to Create Something Amazing?</h2>
+            <p>Get a free quote within 24 hours</p>
+            <a href="contact.html" class="btn">Request Event →</a>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2026 Active World Kenya. All rights reserved.</p>
+        <p style="margin-top: 10px;">📞 +254 717 038 890 | ✉️ info@activeworld.co.ke</p>
+    </footer>
+</body>
+</html>
