@@ -181,6 +181,222 @@ Stores newsletter subscribers (optional feature).
 
 ---
 
+## How to Use the System
+
+### As a Customer
+
+**Request a Quote:**
+1. Navigate to the "Contact Us" page
+2. Fill in all required fields:
+   - Full Name (first and last)
+   - Phone Number (12 digits starting with 254)
+   - Email Address
+   - Event Type
+   - Event Date (future date)
+   - Expected Guests (optional)
+   - Venue (optional)
+   - Message (optional)
+3. Click "Send Request"
+4. You will receive a confirmation message with a reference number
+
+**Make an M-Pesa Payment:**
+1. Navigate to the "Contact Us" page
+2. Scroll to the "Pay with M-Pesa" section
+3. Enter your M-Pesa number (12 digits starting with 254)
+4. Enter the amount you wish to pay
+5. Click "Pay Now"
+6. Check your phone for the M-Pesa prompt
+7. Enter your PIN to confirm the payment
+
+**Leave a Review:**
+1. Navigate to the "Reviews" page
+2. Fill in your name, email, and event type
+3. Select a rating (1-5 stars)
+4. Write your review
+5. Click "Submit Review"
+6. Your review will appear after admin approval
+
+### As an Admin
+
+**Log In:**
+1. Go to: https://yourdomain.com/admin/login.php
+2. Enter username and password
+3. Click "Login"
+
+**View Event Requests:**
+- All requests are displayed in the dashboard table
+- You can see important details at a glance
+
+**Update Event Status:**
+1. Find the request in the dashboard
+2. Use the dropdown in the "Status" column
+3. Select: Pending, Approved, or Completed
+4. The status updates automatically
+
+**Track Payments:**
+1. Click the "Pay" button on any request
+2. Select payment status: No Payment, Deposit Paid, Partial Paid, or Fully Paid
+3. Enter the amount paid and total amount
+4. Select payment method
+5. Enter transaction ID (optional)
+6. Click "Update Payment"
+
+**Search and Filter:**
+- Use the search box to find requests by name or email
+- Use the status filter to view specific statuses
+- Use the payment filter to view specific payment statuses
+
+**Export Data:**
+- Click the "Export to Excel" button
+- A CSV file will download
+- Open in Excel for analysis
+
+**Manage Reviews:**
+1. Click "Manage Reviews" in the dashboard
+2. Pending reviews will appear
+3. Click "Approve" to publish
+4. Click "Delete" to remove
+
+---
+
+## Admin Dashboard Guide
+
+The admin dashboard is the central control panel for managing the entire system. Here is a detailed guide to each section:
+
+### Statistics Cards
+The top of the dashboard displays four statistic cards:
+- **Total Requests:** Total number of event requests
+- **Pending:** Requests awaiting action
+- **Approved:** Approved requests
+- **Completed:** Completed events
+
+### Payment Totals
+Three cards display payment summaries:
+- **Total Deposits:** Sum of all deposit payments
+- **Total Partial Payments:** Sum of all partial payments
+- **Total Fully Paid:** Sum of all fully paid events
+
+### Filter Section
+The filter bar allows you to:
+- Search by name or email
+- Filter by event status
+- Filter by payment status
+
+### Table Columns
+The main table shows:
+- **ID:** Unique request identifier
+- **Date:** Submission date
+- **Name:** Customer name
+- **Email:** Customer email
+- **Phone:** Customer phone number
+- **Event Type:** Type of event requested
+- **Event Date:** Proposed event date
+- **Venue:** Proposed venue
+- **Status:** Current event status (dropdown)
+- **Payment Status:** Payment status with amount details
+- **Actions:** Edit, Pay, and Delete buttons
+
+### Actions
+- **Edit:** Edit customer details
+- **Pay:** Update payment information
+- **Delete:** Remove the request
+
+---
+
+## M-Pesa Payment Integration
+
+### How It Works
+
+The M-Pesa integration uses Safaricom's Daraja API to send STK Push payment requests to customers' phones. The process works as follows:
+
+1. Customer enters their M-Pesa number and amount on the contact page
+2. The system sends a request to Safaricom's API
+3. Safaricom sends a pop-up notification to the customer's phone
+4. Customer enters their PIN to authorize the payment
+5. Safaricom confirms the payment and sends a callback to the system
+6. The system updates the transaction status in the database
+
+### Sandbox Mode
+
+The system is currently configured for Sandbox mode, which means:
+- No real money is transferred
+- Payments are simulated for testing
+- Use test phone numbers provided by Safaricom
+
+### Going Live
+
+To process real payments, you need to:
+1. Register for a Paybill or Till number with Safaricom
+2. Apply for production access in the Daraja portal
+3. Replace sandbox credentials with live credentials
+4. Update the callback URL to your live domain
+
+---
+
+## Email Notifications
+
+The system automatically sends email notifications when an admin approves an event request. The email includes:
+- Event approval confirmation
+- Event details summary
+- Company contact information
+
+### Email Backup
+
+All emails sent through the system are saved as backups in the `email_backups/` folder. This ensures that no communication is lost.
+
+### Email Configuration
+
+To enable real email sending:
+1. Configure SMTP settings in your PHP configuration
+2. Or use PHPMailer library with Gmail SMTP
+3. Or use your hosting provider's mail function
+
+---
+
+## Deployment Information
+
+### Current Deployment
+
+The system is currently deployed on InfinityFree at:
+- Live URL: https://activeworld.freedev.app/
+- Admin Login: https://activeworld.freedev.app/admin/login.php
+
+### Deployment Checklist
+
+When deploying to a new server, ensure you:
+1. Upload all files to the web server
+2. Create a MySQL database
+3. Import the database structure
+4. Update database credentials in config.php
+5. Update M-Pesa callback URL in mpesa-config.php
+6. Change the default admin password
+7. Test all functionality
+8. Enable SSL for security
+
+### Hosting Recommendations
+
+| Host | Cost | Features |
+|------|------|----------|
+| Hostinger | ~KES 500/mo | PHP/MySQL, Email, SSL, 24/7 Support |
+| InfinityFree | Free | PHP/MySQL, SSL (current) |
+| 000webhost | Free | PHP/MySQL, Ads displayed |
+
+---
+
+## Troubleshooting Common Issues
+
+### Issue: "Could not connect to server"
+
+**Cause:** The API path in contact.html is incorrect.
+
+**Solution:**
+1. Open `contact.html`
+2. Find the `apiBase` variable (around line 350)
+3. Ensure it points to the correct URL:
+```javascript
+
+const apiBase = 'https://yourdomain.com/api/';
+
 ## Installation Guide
 
 ### Step 1: Download the Code
