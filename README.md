@@ -219,7 +219,7 @@ Stores newsletter subscribers (optional feature).
 ### As an Admin
 
 **Log In:**
-1. Go to: https://yourdomain.com/admin/login.php
+1. Go to: https://activeworld.freedev.app/admin/login.php
 2. Enter username and password
 3. Click "Login"
 
